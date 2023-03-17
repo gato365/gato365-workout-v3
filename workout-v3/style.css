@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    color: black;
+}
+
+.page {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: darkgreen;
+}
+
+input[type="number"] {
+    width: 60px;
+    text-align: center;
+    margin: 4px;
+}
+
+.complete, .skip {
+    background-color: black;
+}
+
+.complete.completed, .skip.skipped {
+    background-color: green;
+}
+
+.set-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.set {
+    margin: 16px;
+}
