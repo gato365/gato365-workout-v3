@@ -1,6 +1,5 @@
 
-
-const dailyWorkouts = 
+const dailyWorkouts =
 {
 
     "workout_1": {
@@ -44,19 +43,18 @@ const dailyWorkouts =
 }
 
 const workoutLevels = {
-    "Heavy-1":"35 - 15",
-    "Heavy-2":"35 - 10",
-    "Heavy-3":"35 - 5",
-    "Middle-1":"25 - 15",
-    "Middle-2":"25 - 10",
-    "Middle-3":"25 - 5",
-    "Lite-1":"20 - 20",
-    "Lite-2":"20 - 10",
-    "Lite-3":"20 - 5"
+    "Heavy-1": "35 - 15",
+    "Heavy-2": "35 - 10",
+    "Heavy-3": "35 - 5",
+    "Middle-1": "25 - 15",
+    "Middle-2": "25 - 10",
+    "Middle-3": "25 - 5",
+    "Lite-1": "20 - 20",
+    "Lite-2": "20 - 10",
+    "Lite-3": "20 - 5"
 }
 
-
-workoutRegions = {
+const workoutRegions = {
     "Arms": {
         "type1": "Hammer Curls",
         "type2": "Curl Dumb Bell",
@@ -69,7 +67,7 @@ workoutRegions = {
         "type1": "Bench Press Dumb Bell",
         "type2": "Incline Bench Press",
         "type3": "Bent Over Fly"
-        
+
     },
     "Back": {
         "type1": "Single Arm Row",
@@ -92,6 +90,69 @@ workoutRegions = {
     }
 }
 
-module.exports = {dailyWorkouts, workoutLevels, workoutRegions}  // export the data to be used in other files
+// -----------------Function Definitions--------------------
+// Author: Immanuel Williams PhD 
+// Date Created: 03/17/2023
+// Date Modified: 03/17/2023
+// Name: extractAreas
+// Purpose: Extracts the areas from the workout object
+// Input: workout
+// Output: Appropriate areas
+// Notes: NA
+// -----------------Function Definitions--------------------
+
+const extractAreas = (workout) => {
+    let areas = [];
+    for (const key in workout) {
+        if (key.includes("area")) {
+            areas.push(workout[key]);
+        }
+    }
+    return areas;
+};
+
+// -----------------Function Definitions--------------------
+// Author: Immanuel Williams PhD 
+// Date Created: 03/17/2023
+// Date Modified: 03/17/2023
+// Name: getExercisesByRegion
+// Purpose: Extracts the exercises from the workout object
+// Input: regions, regionName
+// Output: Appropriate exercises
+// Notes: NA
+// -----------------Function Definitions--------------------
+const getExercisesByRegion = (regions, regionName) => {
+    const region = regions[regionName];
+    if (!region) {
+        console.log("Invalid region name");
+        return [];
+    }
+
+    const exercises = [];
+    for (const key in region) {
+        exercises.push(region[key]);
+    }
+    return exercises;
+};
+
+
+// -----------------Function Definitions--------------------
+// Author: Immanuel Williams PhD 
+// Date Created: 03/17/2023
+// Date Modified: 03/17/2023
+// Name: getWorkoutByDay
+// Purpose: Extracts the workout by day from the workout object
+// Input: workouts, day
+// Output: Appropriate workout
+// Notes: NA
+// -----------------Function Definitions--------------------
+const getWorkoutByDay = (workouts, day) => {
+    for (const workout in workouts) {
+        if (workouts[workout].day === day) {
+            return workouts[workout];
+        }
+    }
+    return null;
+};
 
 
