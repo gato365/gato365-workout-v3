@@ -12,7 +12,7 @@ bin-release/
 *.air
 *.ipa
 *.apk
-workout-v3/node_modules
+assets/js/node_modules/
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
