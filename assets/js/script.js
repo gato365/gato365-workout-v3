@@ -3,11 +3,13 @@ const startWorkoutBtn = document.getElementById("start-workout");
 const page1 = document.getElementById("page1");
 const page2 = document.getElementById("page2");
 const exerciseTitle = document.getElementById("exercise-title");
-const previousBtn = document.getElementById("previous");
-const nextBtn = document.getElementById("next");
+const prevExerciseButton = document.getElementById("prev-exercise");
+const nextExerciseButton = document.getElementById("next-exercise");
 const workoutInfoElement = document.getElementById("workout-info");
 const cardioInfoElement = document.getElementById("cardio-info");
 const durationInfoElement = document.getElementById("duration-info");
+const setsContainer = document.getElementById('sets-container');
+
 
 
 // Print current date and time in console
@@ -29,7 +31,7 @@ const workout = getWorkoutByDay(dailyWorkouts, today);
 // If workout is found, display workout info, else display no workout found
 let exercisesByArea = {};
 if (workout) {
-  
+
     workoutInfoElement.innerHTML = `Today's workout: ${workout.area1} & ${workout.area2}`;
     cardioInfoElement.innerHTML = `Cardio: ${workout.area3} for 30 minutes`;
     durationInfoElement.innerHTML = `Anticipated workout duration: 1 hour 30 minutes`;
@@ -46,7 +48,7 @@ if (workout) {
     document.getElementById("workout-info").innerHTML = "No workout scheduled for today";
     console.log("No workout found for", today);
 }
-  
+
 
 
 
@@ -59,7 +61,7 @@ if (workout) {
     for (const key in exercisesByArea) {
         workoutExercises = workoutExercises.concat(exercisesByArea[key]);
     }
-    
+
 }
 
 startWorkoutBtn.addEventListener("click", () => {
@@ -70,31 +72,106 @@ startWorkoutBtn.addEventListener("click", () => {
     }
 });
 
-previousBtn.addEventListener("click", () => {
+prevExerciseButton.addEventListener("click", () => {
     if (currentExerciseIndex > 0) {
         currentExerciseIndex--;
         exerciseTitle.textContent = workoutExercises[currentExerciseIndex];
     }
 });
 
-// nextBtn.addEventListener("click", () => {
-//     if (currentExerciseIndex < workoutExercises.length - 1) {
-//         currentExerciseIndex++;
-//         exerciseTitle.textContent = workoutExercises[currentExerciseIndex];
-//     }
-// });
+nextExerciseButton.addEventListener("click", () => {
+    if (currentExerciseIndex < workoutExercises.length - 1) {
+        currentExerciseIndex++;
+        exerciseTitle.textContent = workoutExercises[currentExerciseIndex];
+    }
+});
 
-// const completeButtons = document.querySelectorAll(".complete");
-// const skipButtons = document.querySelectorAll(".skip");
+const completeButtons = document.querySelectorAll(".complete");
 
-// completeButtons.forEach((button, index) => {
-//     button.addEventListener("click", () => {
-//         button.classList.toggle("completed");
-//     });
-// });
+const skipButtons = document.querySelectorAll(".skip");
 
-// skipButtons.forEach((button, index) => {
-//     button.addEventListener("click", () => {
-//         button.classList.toggle("skipped");
-//     });
-// });
+completeButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        button.classList.toggle("completed");
+    });
+});
+
+skipButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+        button.classList.toggle("skipped");
+    });
+});
+
+
+// script.js
+
+const exercises = ['Exercise 1', 'Exercise 2', 'Exercise 3']; // Replace this with your exercises array
+let currentExercise = 0;
+
+
+
+
+const generateSets = () => {
+    setsContainer.innerHTML = '';
+    for (let i = 1; i <= 3; i++) {
+        const set = document.createElement('div');
+        set.classList.add('set');
+
+        const label = document.createElement('label');
+        label.textContent = `Set ${i}:`;
+
+        const repsInput = document.createElement('input');
+        repsInput.setAttribute('type', 'number');
+        repsInput.setAttribute('placeholder', 'Reps');
+
+        const weightInput = document.createElement('input');
+        weightInput.setAttribute('type', 'number');
+        weightInput.setAttribute('placeholder', 'Weight');
+
+        const completeButton = document.createElement('button');
+        completeButton.textContent = 'Complete';
+        completeButton.classList.add('complete');
+        completeButton.addEventListener('click', () => {
+            completeButton.classList.toggle('completed');
+        });
+
+
+
+        const skipButton = document.createElement('button');
+        skipButton.textContent = 'Skip';
+        skipButton.classList.add('skip');
+        skipButton.addEventListener('click', () => {
+            skipButton.classList.toggle('skipped');
+        });
+
+        set.appendChild(label);
+        set.appendChild(repsInput);
+        set.appendChild(weightInput);
+        set.appendChild(completeButton);
+        set.appendChild(skipButton);
+        setsContainer.appendChild(set);
+    }
+};
+
+const updateExercise = () => {
+    exerciseTitle.textContent = workoutExercises[currentExercise];
+    generateSets();
+};
+
+prevExerciseButton.addEventListener('click', () => {
+    if (currentExercise > 0) {
+        currentExercise--;
+        updateExercise();
+    }
+});
+
+nextExerciseButton.addEventListener('click', () => {
+    if (currentExercise < workoutExercises.length - 1) {
+        currentExercise++;
+        updateExercise();
+    }
+});
+
+
+// Initialize the first exercise
+updateExercise();
