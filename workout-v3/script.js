@@ -1,4 +1,10 @@
 const DateTime = luxon.DateTime;
+// const {dailyWorkouts, workoutLevels, workoutRegions } = require('./data/data.js');
+
+
+
+
+
 
 // Print current date and time in console
 console.log(DateTime.now().toLocaleString(DateTime.DATETIME_FULL));
@@ -7,58 +13,44 @@ console.log(DateTime.now().toLocaleString(DateTime.DATETIME_FULL));
 document.getElementById("date-time").textContent = DateTime.now().toLocaleString(DateTime.DATETIME_FULL);
 
 // load dailyworjout.json file into workouts variable
-let workouts;
-fetch("./data/dailyWorkouts.json")
-    .then((response) => response.json())
-    .then((data) => {
-        workouts = data;
-        console.log(workouts)
-    });
-import data from './data/dailyWorkouts.json';
-print(data)
-
 // let workouts;
-
-// async function fetchData() {
-//     const response = await fetch("./data/dailyWorkouts.json");
-//     const data = await response.json();
-//     workouts = data;
-
-// }
-
-// fetchData();
-
+// fetch("./data/dailyWorkouts.json")
+//     .then((response) => response.json())
+//     .then((data) => {
+//         workouts = data;
+//         console.log(workouts)
+//     });
 
 
 
 // Load workoutRegions_home.json file into exercises variable
-let exercises;
-fetch("./data/workoutRegions_home.json")
-    .then((response) => response.json())
-    .then((data) => {
-        exercises = data;
-    });
+// let exercises;
+// fetch("./data/workoutRegions_home.json")
+//     .then((response) => response.json())
+//     .then((data) => {
+//         exercises = data;
+//     });
 
-// Load workoutlevels.json file into levels variable
-let levels;
-fetch("./data/workout_levels.json")
-    .then((response) => response.json())
-    .then((data) => {
-        levels = data;
-    });
+// // Load workoutlevels.json file into levels variable
+// let levels;
+// fetch("./data/workout_levels.json")
+//     .then((response) => response.json())
+//     .then((data) => {
+//         levels = data;
+//     });
 
 
 
 // Workout logic
-const today = DateTime.now().weekdayLong;
-let workout;
-for (const key in workouts) {
-    if (workouts[key].day === today) {
-        workout = workouts[key];
-        break;
-    }
-}
-console.log(workouts)
+// const today = DateTime.now().weekdayLong;
+// let workout;
+// for (const key in workouts) {
+//     if (workouts[key].day === today) {
+//         workout = workouts[key];
+//         break;
+//     }
+// }
+// console.log(workouts)
 
 // if (workout) {
 //     document.getElementById("workout-info").innerHTML = `Today's workout: ${workout.area1}, ${workout.area2}, ${workout.area3}`;
