@@ -1,4 +1,14 @@
-
+const DateTime = luxon.DateTime;
+const startWorkoutBtn = document.getElementById("start-workout");
+const page1 = document.getElementById("page1");
+const page2 = document.getElementById("page2");
+const exerciseTitle = document.getElementById("exercise-title");
+const prevExerciseButton = document.getElementById("prev-exercise");
+const nextExerciseButton = document.getElementById("next-exercise");
+const workoutInfoElement = document.getElementById("workout-info");
+const cardioInfoElement = document.getElementById("cardio-info");
+const durationInfoElement = document.getElementById("duration-info");
+const setsContainer = document.getElementById('sets-container');
 const dailyWorkouts =
 {
 
@@ -156,3 +166,26 @@ const getWorkoutByDay = (workouts, day) => {
 };
 
 
+
+// -----------------Function Definitions--------------------
+// Author: Immanuel Williams PhD 
+// Date Created: 03/17/2023
+// Date Modified: 03/17/2023
+// Name: checkAllSetsMarked
+// Purpose: Checks if all sets are marked
+// Input: NA
+// Output: NA
+// Notes: NA
+// -----------------Function Definitions--------------------
+const checkAllSetsMarked = () => {
+    const completeButtons = document.querySelectorAll(".complete");
+    const skipButtons = document.querySelectorAll(".skip");
+    const markedButtons = document.querySelectorAll(".completed, .skipped");
+    
+    console.log('marked: ', markedButtons.length, 'clicked: ', completeButtons.length + skipButtons.length);
+    if (markedButtons.length === completeButtons.length + skipButtons.length) {
+        nextExerciseButton.style.display = "inline-block";
+    } else {
+        nextExerciseButton.style.display = "none";
+    }
+};

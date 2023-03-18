@@ -1,14 +1,4 @@
-const DateTime = luxon.DateTime;
-const startWorkoutBtn = document.getElementById("start-workout");
-const page1 = document.getElementById("page1");
-const page2 = document.getElementById("page2");
-const exerciseTitle = document.getElementById("exercise-title");
-const prevExerciseButton = document.getElementById("prev-exercise");
-const nextExerciseButton = document.getElementById("next-exercise");
-const workoutInfoElement = document.getElementById("workout-info");
-const cardioInfoElement = document.getElementById("cardio-info");
-const durationInfoElement = document.getElementById("duration-info");
-const setsContainer = document.getElementById('sets-container');
+
 
 
 
@@ -112,6 +102,7 @@ let currentExercise = 0;
 
 
 const generateSets = () => {
+
     setsContainer.innerHTML = '';
     for (let i = 1; i <= 3; i++) {
         const set = document.createElement('div');
@@ -128,12 +119,16 @@ const generateSets = () => {
         weightInput.setAttribute('type', 'number');
         weightInput.setAttribute('placeholder', 'Weight');
 
+       
         const completeButton = document.createElement('button');
         completeButton.textContent = 'Complete';
         completeButton.classList.add('complete');
         completeButton.addEventListener('click', () => {
             completeButton.classList.toggle('completed');
+            checkAllSetsMarked();
         });
+
+
 
 
 
@@ -142,6 +137,7 @@ const generateSets = () => {
         skipButton.classList.add('skip');
         skipButton.addEventListener('click', () => {
             skipButton.classList.toggle('skipped');
+            checkAllSetsMarked();
         });
 
         set.appendChild(label);
@@ -158,20 +154,9 @@ const updateExercise = () => {
     generateSets();
 };
 
-prevExerciseButton.addEventListener('click', () => {
-    if (currentExercise > 0) {
-        currentExercise--;
-        updateExercise();
-    }
-});
 
-nextExerciseButton.addEventListener('click', () => {
-    if (currentExercise < workoutExercises.length - 1) {
-        currentExercise++;
-        updateExercise();
-    }
-});
-
+// Hide the next button by default
+nextExerciseButton.style.display = "none";
 
 // Initialize the first exercise
 updateExercise();
