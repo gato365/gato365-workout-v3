@@ -169,8 +169,8 @@ const getWorkoutByDay = (workouts, day) => {
 
 // -----------------Function Definitions--------------------
 // Author: Immanuel Williams PhD 
-// Date Created: 03/17/2023
-// Date Modified: 03/17/2023
+// Date Created: 03/18/2023
+// Date Modified: 03/18/2023
 // Name: checkAllSetsMarked
 // Purpose: Checks if all sets are marked
 // Input: NA
@@ -183,9 +183,35 @@ const checkAllSetsMarked = () => {
     const markedButtons = document.querySelectorAll(".completed, .skipped");
     
     console.log('marked: ', markedButtons.length, 'clicked: ', completeButtons.length + skipButtons.length);
-    if (markedButtons.length === completeButtons.length + skipButtons.length) {
+    if (markedButtons.length === 3) {
         nextExerciseButton.style.display = "inline-block";
+        markedButtons.length = 0;
     } else {
         nextExerciseButton.style.display = "none";
     }
 };
+
+// -----------------Function Definitions--------------------
+// Author: Immanuel Williams PhD 
+// Date Created: 03/18/2023
+// Date Modified: 03/18/2023
+// Name: resetButtons
+// Purpose: Resets the buttons
+// Input: NA
+// Output: NA
+// Notes: NA
+// -----------------Function Definitions--------------------
+const resetButtons = () => {
+    const completeButtons = document.querySelectorAll(".complete");
+    const skipButtons = document.querySelectorAll(".skip");
+  
+    completeButtons.forEach((button) => {
+      button.classList.remove("completed");
+    });
+  
+    skipButtons.forEach((button) => {
+      button.classList.remove("skipped");
+    });
+  
+    nextExerciseButton.style.display = "none";
+  };
