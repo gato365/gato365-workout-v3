@@ -72,9 +72,13 @@ prevExerciseButton.addEventListener("click", () => {
 nextExerciseButton.addEventListener("click", () => {
     if (currentExerciseIndex < workoutExercises.length - 1) {
         currentExerciseIndex++;
-        exerciseTitle.textContent = workoutExercises[currentExerciseIndex];
+        updateExercise();
+        resetButtons();
     }
 });
+
+
+
 
 const completeButtons = document.querySelectorAll(".complete");
 
@@ -105,6 +109,16 @@ const generateSets = () => {
 
     setsContainer.innerHTML = '';
     for (let i = 1; i <= 3; i++) {
+
+
+
+
+
+
+
+
+
+        
         const set = document.createElement('div');
         set.classList.add('set');
 
@@ -119,13 +133,14 @@ const generateSets = () => {
         weightInput.setAttribute('type', 'number');
         weightInput.setAttribute('placeholder', 'Weight');
 
-       
+
         const completeButton = document.createElement('button');
         completeButton.textContent = 'Complete';
         completeButton.classList.add('complete');
         completeButton.addEventListener('click', () => {
             completeButton.classList.toggle('completed');
-            checkAllSetsMarked();
+            // checkAllSetsMarked();
+            checkButtonsState();
         });
 
 
@@ -137,7 +152,8 @@ const generateSets = () => {
         skipButton.classList.add('skip');
         skipButton.addEventListener('click', () => {
             skipButton.classList.toggle('skipped');
-            checkAllSetsMarked();
+            // checkAllSetsMarked();
+            checkButtonsState();
         });
 
         set.appendChild(label);
@@ -150,8 +166,9 @@ const generateSets = () => {
 };
 
 const updateExercise = () => {
-    exerciseTitle.textContent = workoutExercises[currentExercise];
+    exerciseTitle.textContent = workoutExercises[currentExerciseIndex];
     generateSets();
+    nextExerciseButton.style.display = "none";
 };
 
 

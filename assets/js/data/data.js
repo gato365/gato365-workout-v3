@@ -215,3 +215,38 @@ const resetButtons = () => {
   
     nextExerciseButton.style.display = "none";
   };
+
+
+// -----------------Function Definitions--------------------
+// Author: Immanuel Williams PhD 
+// Date Created: 03/18/2023
+// Date Modified: 03/18/2023
+// Name: checkButtonsStat
+// Purpose: Checks if all buttons are clicked
+// Input: NA
+// Output: NA
+// Notes: NA
+// -----------------Function Definitions--------------------
+  const checkButtonsState = () => {
+    const completeButtons = document.querySelectorAll(".complete");
+    const skipButtons = document.querySelectorAll(".skip");
+
+    let allButtonsClicked = true;
+    completeButtons.forEach((button) => {
+        if (!button.classList.contains("completed")) {
+            allButtonsClicked = false;
+        }
+    });
+
+    skipButtons.forEach((button) => {
+        if (!button.classList.contains("skipped")) {
+            allButtonsClicked = false;
+        }
+    });
+
+    if (allButtonsClicked) {
+        nextExerciseButton.style.display = "block";
+    } else {
+        nextExerciseButton.style.display = "none";
+    }
+};
