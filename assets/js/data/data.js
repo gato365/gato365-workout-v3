@@ -261,9 +261,13 @@ const resetButtons = () => {
 // Output: NA
 // Notes: NA
 // -----------------Function Definitions--------------------
+let workoutData = {};
+let currentExerciseIndex = 0;
+let workoutExercises = [];
+
 const saveExerciseData = () => {
-    const repsInputs = document.querySelectorAll("input[placeholder='Reps']");
-    const weightInputs = document.querySelectorAll("input[placeholder='Weight']");
+    const repsInputs = document.querySelectorAll("input[placeholder='3']");
+    const weightInputs = document.querySelectorAll("input[placeholder='15']");
 
     const exerciseData = [];
 

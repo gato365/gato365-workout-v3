@@ -50,9 +50,8 @@ if (workout) {
 // Page 2
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-let currentExerciseIndex = 0;
-let workoutExercises = [];
-let workoutData = {};
+
+
 if (workout) {
     for (const key in exercisesByArea) {
         workoutExercises = workoutExercises.concat(exercisesByArea[key]);
