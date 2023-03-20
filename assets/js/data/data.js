@@ -9,6 +9,9 @@ const workoutInfoElement = document.getElementById("workout-info");
 const cardioInfoElement = document.getElementById("cardio-info");
 const durationInfoElement = document.getElementById("duration-info");
 const setsContainer = document.getElementById('sets-container');
+const completeWorkoutButton = document.getElementById("complete-workout");
+
+
 const dailyWorkouts =
 {
 
@@ -284,3 +287,22 @@ const saveExerciseData = () => {
     workoutData[workoutExercises[currentExerciseIndex]] = exerciseData;
     console.log(workoutData);
 };
+
+// Function to save workouts data into a JSON file
+const saveWorkoutData = () => {
+    // const workoutData = {
+    //     // Add your workout data here
+    // };
+
+    const dataStr = JSON.stringify(workoutData);
+    const dataUri = "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+    const exportFileDefaultName = "workoutData.json";
+
+    const linkElement = document.createElement("a");
+    linkElement.setAttribute("href", dataUri);
+    linkElement.setAttribute("download", exportFileDefaultName);
+    linkElement.click();
+};
+
+// Add event listener to "Complete Workout" button
+completeWorkoutButton.addEventListener("click", saveWorkoutData);

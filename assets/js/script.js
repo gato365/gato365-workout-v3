@@ -167,12 +167,38 @@ repsInput.style.fontSize = '16px'; // Adjust the font size as needed
         setsContainer.appendChild(set);
     }
 };
+// Add event listener to "Complete Workout" button
+completeWorkoutButton.addEventListener("click", saveWorkoutData);
 
 const updateExercise = () => {
+   
+   
+    // Update exercise title
     exerciseTitle.textContent = workoutExercises[currentExerciseIndex];
+   
+   
+    // Generate sets
     generateSets();
+   
+
+   
+    // Display the next button
     nextExerciseButton.style.display = "none";
+
+
+    // Save exercise data
+    saveExerciseData();
+
+    // Display "Complete Workout" button on the last exercise
+    if (currentExerciseIndex === workoutExercises.length - 1) {
+        completeWorkoutButton.style.display = "inline-block";
+    } else {
+        completeWorkoutButton.style.display = "none";
+    }
+
 };
+
+
 
 
 // Hide the next button by default
