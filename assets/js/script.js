@@ -106,82 +106,110 @@ skipButtons.forEach((button, index) => {
 let currentExercise = 0;
 
 
-let prevWeightRepInput = {"rep": 3, "weight": 15};
+let prevWeightRepInput = { "rep": 3, "weight": 15 };
 
 const generateSets = () => {
 
     setsContainer.innerHTML = '';
-    for (let i = 1; i <= 3; i++) {
+
+    if (workoutExercises[currentExerciseIndex].toLowerCase() === "bicycle") {
+        const caloriesInput = document.createElement('input');
+        caloriesInput.setAttribute('type', 'number');
+        caloriesInput.setAttribute('placeholder', 'Calories');
+        caloriesInput.style.width = '100px';
+        caloriesInput.style.height = '40px';
+        caloriesInput.style.fontSize = '16px';
+
+        const distanceInput = document.createElement('input');
+        distanceInput.setAttribute('type', 'number');
+        distanceInput.setAttribute('placeholder', 'Distance');
+        distanceInput.style.width = '100px';
+        distanceInput.style.height = '40px';
+        distanceInput.style.fontSize = '16px';
+
+        const timeInput = document.createElement('input');
+        timeInput.setAttribute('type', 'number');
+        timeInput.setAttribute('placeholder', 'Time');
+        timeInput.style.width = '100px';
+        timeInput.style.height = '40px';
+        timeInput.style.fontSize = '16px';
+
+        setsContainer.appendChild(caloriesInput);
+        setsContainer.appendChild(distanceInput);
+        setsContainer.appendChild(timeInput);
+    } else {
+        for (let i = 1; i <= 3; i++) {
 
 
-        const set = document.createElement('div');
-        set.classList.add('set');
+            const set = document.createElement('div');
+            set.classList.add('set');
 
-        const label = document.createElement('label');
-        label.textContent = `Set ${i}:`;
-        label.style.fontSize = '25px'; // Adjust the width as needed
+            const label = document.createElement('label');
+            label.textContent = `Set ${i}:`;
+            label.style.fontSize = '25px'; // Adjust the width as needed
 
-        const repsInput = document.createElement('input');
-        repsInput.setAttribute('type', 'number');
-        repsInput.setAttribute('placeholder', prevWeightRepInput.rep);
-        repsInput.style.width = '100px'; // Adjust the width as needed
-repsInput.style.height = '40px'; // Adjust the height as needed
-repsInput.style.fontSize = '16px'; // Adjust the font size as needed
+            const repsInput = document.createElement('input');
+            repsInput.setAttribute('type', 'number');
+            repsInput.setAttribute('placeholder', prevWeightRepInput.rep);
+            repsInput.style.width = '100px'; // Adjust the width as needed
+            repsInput.style.height = '40px'; // Adjust the height as needed
+            repsInput.style.fontSize = '16px'; // Adjust the font size as needed
 
-        const weightInput = document.createElement('input');
-        weightInput.setAttribute('type', 'number');
-        weightInput.setAttribute('placeholder', prevWeightRepInput.weight);
-        weightInput.style.width = '100px'; // Adjust the width as needed
-        weightInput.style.height = '40px'; // Adjust the height as needed
-        weightInput.style.fontSize = '16px'; // Adjust the font size as needed
+            const weightInput = document.createElement('input');
+            weightInput.setAttribute('type', 'number');
+            weightInput.setAttribute('placeholder', prevWeightRepInput.weight);
+            weightInput.style.width = '100px'; // Adjust the width as needed
+            weightInput.style.height = '40px'; // Adjust the height as needed
+            weightInput.style.fontSize = '16px'; // Adjust the font size as needed
 
-        const completeButton = document.createElement('button');
-        completeButton.textContent = 'Complete';
-        completeButton.classList.add('complete');
-       
-       
-        completeButton.addEventListener('click', () => {
-            completeButton.classList.toggle('completed');
-            checkAllSetsMarked();
-            // checkButtonsState();
-        });
+            const completeButton = document.createElement('button');
+            completeButton.textContent = 'Complete';
+            completeButton.classList.add('complete');
 
 
+            completeButton.addEventListener('click', () => {
+                completeButton.classList.toggle('completed');
+                checkAllSetsMarked();
+                // checkButtonsState();
+            });
 
 
 
-        const skipButton = document.createElement('button');
-        skipButton.textContent = 'Skip';
-        skipButton.classList.add('skip');
-        skipButton.addEventListener('click', () => {
-            skipButton.classList.toggle('skipped');
-            checkAllSetsMarked();
-            // checkButtonsState();
-        });
 
-        set.appendChild(label);
-        set.appendChild(repsInput);
-        set.appendChild(weightInput);
-        set.appendChild(completeButton);
-        set.appendChild(skipButton);
-        setsContainer.appendChild(set);
+
+            const skipButton = document.createElement('button');
+            skipButton.textContent = 'Skip';
+            skipButton.classList.add('skip');
+            skipButton.addEventListener('click', () => {
+                skipButton.classList.toggle('skipped');
+                checkAllSetsMarked();
+                // checkButtonsState();
+            });
+
+            set.appendChild(label);
+            set.appendChild(repsInput);
+            set.appendChild(weightInput);
+            set.appendChild(completeButton);
+            set.appendChild(skipButton);
+            setsContainer.appendChild(set);
+        }
     }
 };
 // Add event listener to "Complete Workout" button
 completeWorkoutButton.addEventListener("click", saveWorkoutData);
 
 const updateExercise = () => {
-   
-   
+
+
     // Update exercise title
     exerciseTitle.textContent = workoutExercises[currentExerciseIndex];
-   
-   
+
+
     // Generate sets
     generateSets();
-   
 
-   
+
+
     // Display the next button
     nextExerciseButton.style.display = "none";
 

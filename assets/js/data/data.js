@@ -269,24 +269,39 @@ let currentExerciseIndex = 0;
 let workoutExercises = [];
 
 const saveExerciseData = () => {
-    const repsInputs = document.querySelectorAll("input[placeholder='3']");
-    const weightInputs = document.querySelectorAll("input[placeholder='15']");
+    if (workoutExercises[currentExerciseIndex].toLowerCase() === "bicycle") {
+        const caloriesInput = document.querySelector("input[placeholder='Calories']");
+        const distanceInput = document.querySelector("input[placeholder='Distance']");
+        const timeInput = document.querySelector("input[placeholder='Time']");
 
-    const exerciseData = [];
+        workoutData[workoutExercises[currentExerciseIndex]] = {
+            calories: caloriesInput.value,
+            distance: distanceInput.value,
+            time: timeInput.value,
+        };
+    } else {
+        const repsInputs = document.querySelectorAll("input[placeholder='3']");
+        const weightInputs = document.querySelectorAll("input[placeholder='15']");
 
-    for (let i = 0; i < repsInputs.length; i++) {
-        exerciseData.push({
-            set: i + 1,
-            reps: repsInputs[i].value,
-            weight: weightInputs[i].value,
-            completed: repsInputs[i].parentNode.querySelector(".complete").classList.contains("completed"),
-            skipped: repsInputs[i].parentNode.querySelector(".skip").classList.contains("skipped"),
-        });
+        const exerciseData = [];
+
+        for (let i = 0; i < repsInputs.length; i++) {
+            exerciseData.push({
+                set: i + 1,
+                reps: repsInputs[i].value,
+                weight: weightInputs[i].value,
+                completed: repsInputs[i].parentNode.querySelector(".complete").classList.contains("completed"),
+                skipped: repsInputs[i].parentNode.querySelector(".skip").classList.contains("skipped"),
+            });
+        }
+
+        workoutData[workoutExercises[currentExerciseIndex]] = exerciseData;
     }
 
-    workoutData[workoutExercises[currentExerciseIndex]] = exerciseData;
     console.log(workoutData);
 };
+
+
 
 // Function to save workouts data into a JSON file
 const saveWorkoutData = () => {
