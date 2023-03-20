@@ -106,7 +106,7 @@ skipButtons.forEach((button, index) => {
 let currentExercise = 0;
 
 
-let prevWeightRepInput = { "rep": 3, "weight": 15 };
+let prevWeightRepInput = { "rep": "Reps", "weight": "Weight" };
 
 const generateSets = () => {
 
@@ -119,6 +119,9 @@ const generateSets = () => {
         caloriesInput.style.width = '100px';
         caloriesInput.style.height = '40px';
         caloriesInput.style.fontSize = '16px';
+        const caloriesLabel = document.createElement('label');
+        caloriesLabel.textContent = 'Calories:';
+        caloriesLabel.style.fontSize = '16px';
 
         const distanceInput = document.createElement('input');
         distanceInput.setAttribute('type', 'number');
@@ -126,6 +129,9 @@ const generateSets = () => {
         distanceInput.style.width = '100px';
         distanceInput.style.height = '40px';
         distanceInput.style.fontSize = '16px';
+        const distanceLabel = document.createElement('label');
+        distanceLabel.textContent = 'Distance:';
+        distanceLabel.style.fontSize = '16px';
 
         const timeInput = document.createElement('input');
         timeInput.setAttribute('type', 'number');
@@ -133,7 +139,39 @@ const generateSets = () => {
         timeInput.style.width = '100px';
         timeInput.style.height = '40px';
         timeInput.style.fontSize = '16px';
+        const timeLabel = document.createElement('label');
+        timeLabel.textContent = 'Time:';
+        timeLabel.style.fontSize = '16px';
 
+        const completeButton = document.createElement('button');
+        completeButton.textContent = 'Complete';
+        completeButton.classList.add('complete');
+        completeButton.addEventListener('click', () => {
+            completeButton.classList.toggle('completed');
+            checkAllSetsMarked();
+            // checkButtonsState();
+        });
+
+
+
+
+
+        const skipButton = document.createElement('button');
+        skipButton.textContent = 'Skip';
+        skipButton.classList.add('skip');
+        skipButton.addEventListener('click', () => {
+            skipButton.classList.toggle('skipped');
+            checkAllSetsMarked();
+            // checkButtonsState();
+        });
+
+
+        setsContainer.appendChild(caloriesLabel);
+        setsContainer.appendChild(caloriesInput);
+        setsContainer.appendChild(distanceLabel);
+        setsContainer.appendChild(distanceInput);
+        setsContainer.appendChild(timeLabel);
+        setsContainer.appendChild(timeInput);
         setsContainer.appendChild(caloriesInput);
         setsContainer.appendChild(distanceInput);
         setsContainer.appendChild(timeInput);
