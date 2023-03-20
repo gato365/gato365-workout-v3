@@ -10,7 +10,9 @@ document.getElementById("date-time").textContent = DateTime.now().toLocaleString
 
 
 
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Page 1
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Get Today's workout
 const today = 'Monday'//DateTime.now().weekdayLong;
@@ -19,6 +21,8 @@ console.log(today);
 
 
 // If workout is found, display workout info, else display no workout found
+
+
 let exercisesByArea = {};
 if (workout) {
 
@@ -42,11 +46,13 @@ if (workout) {
 
 
 
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+// Page 2
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 let currentExerciseIndex = 0;
 let workoutExercises = [];
-
+let workoutData = {};
 if (workout) {
     for (const key in exercisesByArea) {
         workoutExercises = workoutExercises.concat(exercisesByArea[key]);
@@ -70,6 +76,7 @@ prevExerciseButton.addEventListener("click", () => {
 });
 
 nextExerciseButton.addEventListener("click", () => {
+    saveExerciseData();
     if (currentExerciseIndex < workoutExercises.length - 1) {
         currentExerciseIndex++;
         updateExercise();
@@ -95,7 +102,6 @@ skipButtons.forEach((button, index) => {
         button.classList.toggle("skipped");
     });
 });
-
 
 
 let currentExercise = 0;

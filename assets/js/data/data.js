@@ -250,3 +250,33 @@ const resetButtons = () => {
         nextExerciseButton.style.display = "none";
     }
 };
+
+// -----------------Function Definitions--------------------
+// Author: Immanuel Williams PhD 
+// Date Created: 03/19/2023
+// Date Modified: 03/19/2023
+// Name: saveExerciseData
+// Purpose: Saves the exercise data
+// Input: NA
+// Output: NA
+// Notes: NA
+// -----------------Function Definitions--------------------
+const saveExerciseData = () => {
+    const repsInputs = document.querySelectorAll("input[placeholder='Reps']");
+    const weightInputs = document.querySelectorAll("input[placeholder='Weight']");
+
+    const exerciseData = [];
+
+    for (let i = 0; i < repsInputs.length; i++) {
+        exerciseData.push({
+            set: i + 1,
+            reps: repsInputs[i].value,
+            weight: weightInputs[i].value,
+            completed: repsInputs[i].parentNode.querySelector(".complete").classList.contains("completed"),
+            skipped: repsInputs[i].parentNode.querySelector(".skip").classList.contains("skipped"),
+        });
+    }
+
+    workoutData[workoutExercises[currentExerciseIndex]] = exerciseData;
+    console.log(workoutData);
+};
