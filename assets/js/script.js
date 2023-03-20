@@ -13,9 +13,9 @@ document.getElementById("date-time").textContent = DateTime.now().toLocaleString
 
 
 // Get Today's workout
-const today = DateTime.now().weekdayLong;
+const today = 'Monday'//DateTime.now().weekdayLong;
 const workout = getWorkoutByDay(dailyWorkouts, today);
-
+console.log(today);
 
 
 // If workout is found, display workout info, else display no workout found
@@ -97,13 +97,11 @@ skipButtons.forEach((button, index) => {
 });
 
 
-// script.js
 
-const exercises = ['Exercise 1', 'Exercise 2', 'Exercise 3']; // Replace this with your exercises array
 let currentExercise = 0;
 
 
-
+let prevWeightRepInput = {"rep": 3, "weight": 15};
 
 const generateSets = () => {
 
@@ -111,36 +109,36 @@ const generateSets = () => {
     for (let i = 1; i <= 3; i++) {
 
 
-
-
-
-
-
-
-
-        
         const set = document.createElement('div');
         set.classList.add('set');
 
         const label = document.createElement('label');
         label.textContent = `Set ${i}:`;
+        label.style.fontSize = '25px'; // Adjust the width as needed
 
         const repsInput = document.createElement('input');
         repsInput.setAttribute('type', 'number');
-        repsInput.setAttribute('placeholder', 'Reps');
+        repsInput.setAttribute('placeholder', prevWeightRepInput.rep);
+        repsInput.style.width = '100px'; // Adjust the width as needed
+repsInput.style.height = '40px'; // Adjust the height as needed
+repsInput.style.fontSize = '16px'; // Adjust the font size as needed
 
         const weightInput = document.createElement('input');
         weightInput.setAttribute('type', 'number');
-        weightInput.setAttribute('placeholder', 'Weight');
-
+        weightInput.setAttribute('placeholder', prevWeightRepInput.weight);
+        weightInput.style.width = '100px'; // Adjust the width as needed
+        weightInput.style.height = '40px'; // Adjust the height as needed
+        weightInput.style.fontSize = '16px'; // Adjust the font size as needed
 
         const completeButton = document.createElement('button');
         completeButton.textContent = 'Complete';
         completeButton.classList.add('complete');
+       
+       
         completeButton.addEventListener('click', () => {
             completeButton.classList.toggle('completed');
-            // checkAllSetsMarked();
-            checkButtonsState();
+            checkAllSetsMarked();
+            // checkButtonsState();
         });
 
 
@@ -152,8 +150,8 @@ const generateSets = () => {
         skipButton.classList.add('skip');
         skipButton.addEventListener('click', () => {
             skipButton.classList.toggle('skipped');
-            // checkAllSetsMarked();
-            checkButtonsState();
+            checkAllSetsMarked();
+            // checkButtonsState();
         });
 
         set.appendChild(label);
