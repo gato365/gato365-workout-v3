@@ -15,7 +15,7 @@ document.getElementById("date-time").textContent = DateTime.now().toLocaleString
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Get Today's workout
-const today = 'Monday'//DateTime.now().weekdayLong;
+const today = DateTime.now().weekdayLong;
 const workout = getWorkoutByDay(dailyWorkouts, today);
 console.log(today);
 
@@ -207,8 +207,8 @@ const generateSets = () => {
 
             completeButton.addEventListener('click', () => {
                 completeButton.classList.toggle('completed');
-                checkAllSetsMarked();
-                // checkButtonsState();
+                // checkAllSetsMarked();
+                checkButtonsState1();
             });
 
 
@@ -220,8 +220,8 @@ const generateSets = () => {
             skipButton.classList.add('skip');
             skipButton.addEventListener('click', () => {
                 skipButton.classList.toggle('skipped');
-                checkAllSetsMarked();
-                // checkButtonsState();
+                // checkAllSetsMarked();
+                checkButtonsState1();
             });
 
             set.appendChild(label);
@@ -234,7 +234,7 @@ const generateSets = () => {
     }
 };
 // Add event listener to "Complete Workout" button
-completeWorkoutButton.addEventListener("click", saveWorkoutData);
+completeWorkoutButton.addEventListener("click", saveWorkoutData(today));
 
 const updateExercise = () => {
 

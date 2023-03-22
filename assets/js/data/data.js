@@ -169,31 +169,6 @@ const getWorkoutByDay = (workouts, day) => {
 };
 
 
-
-// -----------------Function Definitions--------------------
-// Author: Immanuel Williams PhD 
-// Date Created: 03/18/2023
-// Date Modified: 03/18/2023
-// Name: checkAllSetsMarked
-// Purpose: Checks if all sets are marked
-// Input: NA
-// Output: NA
-// Notes: NA
-// -----------------Function Definitions--------------------
-const checkAllSetsMarked = () => {
-    const completeButtons = document.querySelectorAll(".complete");
-    const skipButtons = document.querySelectorAll(".skip");
-    const markedButtons = document.querySelectorAll(".completed, .skipped");
-    
-    console.log('marked: ', markedButtons.length, 'clicked: ', completeButtons.length + skipButtons.length);
-    if (markedButtons.length === 3) {
-        nextExerciseButton.style.display = "inline-block";
-        markedButtons.length = 0;
-    } else {
-        nextExerciseButton.style.display = "none";
-    }
-};
-
 // -----------------Function Definitions--------------------
 // Author: Immanuel Williams PhD 
 // Date Created: 03/18/2023
@@ -218,6 +193,31 @@ const resetButtons = () => {
   
     nextExerciseButton.style.display = "none";
   };
+// -----------------Function Definitions--------------------
+// Author: Immanuel Williams PhD 
+// Date Created: 03/18/2023
+// Date Modified: 03/18/2023
+// Name: checkAllSetsMarked
+// Purpose: Checks if all sets are marked
+// Input: NA
+// Output: NA
+// Notes: NA
+// -----------------Function Definitions--------------------
+const checkAllSetsMarked = () => {
+    const completeButtons = document.querySelectorAll(".complete");
+    const skipButtons = document.querySelectorAll(".skip");
+    const markedButtons = document.querySelectorAll(".completed, .skipped");
+    
+    console.log('marked: ', markedButtons.length, 'clicked: ', completeButtons.length + skipButtons.length);
+    if (markedButtons.length === 3) {
+        nextExerciseButton.style.display = "inline-block";
+        markedButtons.length = 0;
+    } else {
+        nextExerciseButton.style.display = "none";
+    }
+};
+
+
 
 
 // -----------------Function Definitions--------------------
@@ -254,6 +254,54 @@ const resetButtons = () => {
     }
 };
 
+
+
+// -----------------Function Definitions--------------------
+// Author: Immanuel Williams PhD 
+// Date Created: 03/18/2023
+// Date Modified: 03/18/2023
+// Name: checkButtonsState
+// Purpose: Checks if all sets are marked
+// Input: NA
+// Output: NA
+// Notes: NA
+// -----------------Function Definitions--------------------
+const checkButtonsState1 = () => {
+    const completeButtons = document.querySelectorAll(".complete");
+    const skipButtons = document.querySelectorAll(".skip");
+    const markedButtons = document.querySelectorAll(".completed, .skipped");
+
+    let allButtonsClicked = true;
+    // complete or skip buttons
+    let isCOrSFound = false;
+
+    // check if all buttons are clicked
+    completeButtons.forEach((button) => {
+      if (button.classList.contains("completed")) {
+        if (isCOrSFound) {
+          allButtonsClicked = false;
+          return;
+        }
+        isCOrSFound = true;
+      }
+    });
+    
+    skipButtons.forEach((button) => {
+      if (button.classList.contains("skipped")) {
+        if (isCOrSFound) {
+          allButtonsClicked = false;
+          return;
+        }
+        isCOrSFound = true;
+      }
+    });
+
+    if (markedButtons.length === 3) {
+        nextExerciseButton.style.display = "inline-block";
+    } else {
+        nextExerciseButton.style.display = "none";
+    }
+};
 // -----------------Function Definitions--------------------
 // Author: Immanuel Williams PhD 
 // Date Created: 03/19/2023
@@ -304,14 +352,14 @@ const saveExerciseData = () => {
 
 
 // Function to save workouts data into a JSON file
-const saveWorkoutData = () => {
+const saveWorkoutData = (today) => {
     // const workoutData = {
     //     // Add your workout data here
     // };
 
     const dataStr = JSON.stringify(workoutData);
     const dataUri = "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
-    const exportFileDefaultName = "workoutData.json";
+    const exportFileDefaultName = "workoutData-"+ today+".json";
 
     const linkElement = document.createElement("a");
     linkElement.setAttribute("href", dataUri);
