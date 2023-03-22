@@ -10,7 +10,7 @@ const cardioInfoElement = document.getElementById("cardio-info");
 const durationInfoElement = document.getElementById("duration-info");
 const setsContainer = document.getElementById('sets-container');
 const completeWorkoutButton = document.getElementById("complete-workout");
-
+const today = DateTime.now().weekdayLong;
 
 const dailyWorkouts =
 {
@@ -317,6 +317,7 @@ let currentExerciseIndex = 0;
 let workoutExercises = [];
 
 const saveExerciseData = () => {
+    
     if (workoutExercises[currentExerciseIndex].toLowerCase() === "bicycle") {
         const caloriesInput = document.querySelector("input[placeholder='Calories']");
         const distanceInput = document.querySelector("input[placeholder='Distance']");
@@ -328,12 +329,21 @@ const saveExerciseData = () => {
             time: timeInput.value,
         };
     } else {
-        const repsInputs = document.querySelectorAll("input[placeholder='3']");
-        const weightInputs = document.querySelectorAll("input[placeholder='15']");
 
+        // Get all the reps and weight inputs
+        
+
+
+        const repsInputs = document.querySelectorAll("input[placeholder='Reps']");
+        const weightInputs = document.querySelectorAll("input[placeholder='Weight']");
+
+// console.log(repsInputs);
+        
         const exerciseData = [];
 
         for (let i = 0; i < repsInputs.length; i++) {
+
+            
             exerciseData.push({
                 set: i + 1,
                 reps: repsInputs[i].value,
@@ -368,4 +378,4 @@ const saveWorkoutData = (today) => {
 };
 
 // Add event listener to "Complete Workout" button
-completeWorkoutButton.addEventListener("click", saveWorkoutData);
+completeWorkoutButton.addEventListener("click", () => saveWorkoutData(today));

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Tracker</title>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <div id="page2" class="page" style="display: inline-block;">
+        <h1 id="exercise-title"></h1>
+        <div id="sets-container"></div>
+        <button id="prev-exercise" class="navBtn">Previous</button>
+        <button id="next-exercise" class="navBtn">Next</button>
+
+        <button id="complete-workout" style="display: inline-block;">Complete Workout</button>
+
+    </div>
+    <script>
+
+        const setsContainer = document.getElementById('sets-container');
+        const generateSets = () => {
+
+            setsContainer.innerHTML = '';
+
+
+            for (let i = 1; i <= 3; i++) {
+
+
+                const set = document.createElement('div');
+                set.classList.add('set');
+
+
+                // Label for each set
+                const label = document.createElement('label');
+                label.textContent = `Set ${i}:`;
+                label.style.fontSize = '25px';
+
+
+
+                const repsInput = document.createElement('input');
+                repsInput.setAttribute('type', 'number');
+                repsInput.setAttribute('placeholder', 'Reps');
+                repsInput.style.width = '100px'; // Adjust the width as needed
+                repsInput.style.height = '40px'; // Adjust the height as needed
+                repsInput.style.fontSize = '16px'; // Adjust the font size as needed
+
+
+
+                set.appendChild(label);
+                set.appendChild(repsInput);
+                setsContainer.appendChild(set);
+
+            }
+
+
+        };  
+
+
+        const nextExerciseButton = document.getElementById("next-exercise");
+
+        // Function to log the entered data to the console
+        const logEnteredData = () => {
+            const repsInputs = document.querySelectorAll("input[placeholder='Reps']");
+            const enteredData = [];
+        
+            for (let i = 0; i < repsInputs.length; i++) {
+                enteredData.push({
+                    set: i + 1,
+                    reps: repsInputs[i].value,
+                });
+            }
+        
+            console.log(enteredData);
+        };
+        
+        // Add event listener to "Next" button
+        nextExerciseButton.addEventListener("click", logEnteredData);
+        
+
+        generateSets();
+    </script>
+
+</body>
+
+</html>

@@ -108,6 +108,9 @@ let currentExercise = 0;
 
 let prevWeightRepInput = { "rep": "Reps", "weight": "Weight" };
 
+console.log(prevWeightRepInput.rep);
+console.log("Reps");
+
 const generateSets = () => {
 
     setsContainer.innerHTML = '';
@@ -188,7 +191,7 @@ const generateSets = () => {
 
             const repsInput = document.createElement('input');
             repsInput.setAttribute('type', 'number');
-            repsInput.setAttribute('placeholder', prevWeightRepInput.rep);
+            repsInput.setAttribute('placeholder', "Reps");
             repsInput.style.width = '100px'; // Adjust the width as needed
             repsInput.style.height = '40px'; // Adjust the height as needed
             repsInput.style.fontSize = '16px'; // Adjust the font size as needed
